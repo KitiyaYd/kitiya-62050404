@@ -1,27 +1,73 @@
 import React, { useState, useEffect } from "react";
 
-const Table = ({ ID }) => {
-  const [sortID, setSortID] = useState([]);
+const Table = ({ products }) => {
+  const [sortProduct, setSortProduct] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const onSortClick = () => {
+    console.log("click");
 
+    const tempProducts = [...products];
+    const res = tempProducts.sort((a, b) => {
+      return a.price - b.price;
+    });
+
+    setSortProduct(res);
+
+    console.log({ res });
+  };
+  const onSortClick2 = () => {
+    console.log("click");
+
+    const tempProducts = [...products];
+    const res = tempProducts.sort((a, b) => {
+      return b.price - a.price;
+    });
+
+    setSortProduct(res);
+
+    console.log({ res });
+  };
+  const onSortClick3 = () => {
+    console.log("click");
+
+    const tempProducts = [...products];
+    const res = tempProducts.sort((a, b) => {
+      return a.stock - b.stock;
+    });
+
+    setSortProduct(res);
+  };
+  const onSortClick4 = () => {
+    console.log("click");
+
+    const tempProducts = [...products];
+    const res = tempProducts.sort((a, b) => {
+      return b.stock - a.stock;
+    });
+
+    setSortProduct(res);
+  };
+  const onSortClick5 = () => {
+    setSortProduct(products);
+  };
   const onHandleSearch = (event) => {
     setSearchTerm(event.target.value);
-    const tempID = [...ID];
+    const tempProducts = [...products];
 
-    const filterID = tempID.filter((item) => {
-      return item.ID
+    const filterProducts = tempProducts.filter((item) => {
+      return item.province
         .toLowerCase()
         .includes(event.target.value.toLowerCase());
     });
 
-    console.log({ filterID });
+    console.log({ filterProducts });
 
-    setSortID(filterID);
+    setSortProduct(filterProducts);
   };
 
   useEffect(() => {
-    setSortID(ID);
-  }, [ID]);
+    setSortProduct(products);
+  }, [products]);
 
   return (
     <div>
@@ -41,31 +87,37 @@ const Table = ({ ID }) => {
       <table className="table table-danger table-striped shadow">
         <thead>
           <tr>
-          
-            <th scope="col">Country</th>
-            <th scope="col">TotalConfirme</th>
-            <th scope="col">TotalDeaths</th>
-            <th scope="col" style={{ width: "200px" }}>
-            TotalRecovered
-            </th>
+            <th scope="col">No.</th>
+            <th scope="col"></th>
+            <th scope="col">จังหวัด</th>
+            <th scope="col">ผู้ติดเชื้อใหม่</th>
+            <th scope="col">ผู้เสียชีวิต</th>
+            <th scope="col">ผู้ติดเชื้อทั้งหมด</th>
+            <th scope="col">ผู้เสียชีวิตทั้งหมด</th>
+            <th scope="col">txn_date</th>
+            <th scope="col">อัพเดทล่าสุด</th>
           </tr>
         </thead>
         <tbody>
-        <td>Afghanistan</td>
-        <td>191247</td>
-        <td>7768</td>
-        <td>0</td>
-
-        
-          {sortID.map((items, index) => {
+          {sortProduct.map((items, index) => {
             return (
-              <tr className="table-info">
+              <tr className="table">
                 <td>{index + 1}</td>
-                <td>{items.Country}</td>
-                <td>{items.TotalConfirme}</td>
-                <td>{items.TotalDeaths}</td>
-                <td>{items.TotalRecovered}</td>
+                <td>
+                  {/* <img
+                    src={items.thumbnail}
+                    alt={items.title}
+                    width="30px"
+                  ></img> */}
+                </td>
+                <td>{items.province}</td>
 
+                <td>{items.new_case}</td>
+                <td>{items.new_death}</td>
+                <td>{items.total_case}</td>
+                <td>{items.total_death}</td>
+                <td>{items.txn_date}</td>
+                <td>{items.update_date}</td>
               </tr>
             );
           })}
