@@ -6,11 +6,11 @@ export const App = () => {
   const [data, setData] = useState([]);
 
   const getData = async () => {
-    const response = await axios.get("https://dummyjson.com/products/");
+    const response = await axios.get("https://api.covCountry19api.com/summary");
 
-    console.log(response.data.products);
+    console.log(response.data.ID);
 
-    setData(response.data.products);
+    setData(response.data.ID);
   };
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export const App = () => {
   console.log("data :", data);
   return (
     <div className="container-lg py-2">
-      <Table products={data} />
+      <Table ID={data} />
     </div>
   );
 };
