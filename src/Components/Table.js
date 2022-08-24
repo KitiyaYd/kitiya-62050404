@@ -87,15 +87,15 @@ const Table = ({ products }) => {
       <table className="table table-danger table-striped shadow">
         <thead>
           <tr>
-            <th scope="col">No.</th>
+            <th scope="col">ID</th>
             <th scope="col"></th>
-            <th scope="col">จังหวัด</th>
-            <th scope="col">ผู้ติดเชื้อใหม่</th>
-            <th scope="col">ผู้เสียชีวิต</th>
-            <th scope="col">ผู้ติดเชื้อทั้งหมด</th>
-            <th scope="col">ผู้เสียชีวิตทั้งหมด</th>
+            <th scope="col">Country</th>
+            <th scope="col">NewConfirmed</th>
+            <th scope="col">NewDeaths</th>
+            <th scope="col">TotalConfirmed</th>
+            <th scope="col">TotalDeaths</th>
             <th scope="col">txn_date</th>
-            <th scope="col">อัพเดทล่าสุด</th>
+            <th scope="col">ล่าสุด</th>
           </tr>
         </thead>
         <tbody>
